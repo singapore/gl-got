@@ -1,0 +1,47 @@
+{
+  "name": "gl-got",
+  "version": "0.0.1",
+  "description": "Convenience wrapper for `got` to interact with the GitLab API",
+  "license": "MIT",
+  "repository": "singapore/gl-got",
+  "author": {
+    "name": "Rhys Arkins",
+    "email": "rhys@keylocation.sg"
+  },
+  "engines": {
+    "node": ">=4"
+  },
+  "scripts": {
+    "test": "xo && ava"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "got",
+    "gl",
+    "gitlab",
+    "api",
+    "request",
+    "http",
+    "https",
+    "get",
+    "url",
+    "uri",
+    "util",
+    "utility"
+  ],
+  "dependencies": {
+    "got": "^6.2.0",
+    "is-plain-obj": "^1.1.0"
+  },
+  "devDependencies": {
+    "ava": "*",
+    "get-stream": "^2.0.0",
+    "nock": "^8.0.0",
+    "xo": "*"
+  },
+  "xo": {
+    "esnext": true
+  }
+}
