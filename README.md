@@ -1,6 +1,6 @@
 # gl-got [![Build Status](https://travis-ci.org/singapore/gl-got.svg?branch=master)](https://travis-ci.org/singapore/gl-got)
 
-> Convenience wrapper for [`got`](https://github.com/sindresorhus/got) to interact with the [GitHub API](https://developer.github.com/v3/)
+> Convenience wrapper for [`got`](https://github.com/sindresorhus/got) to interact with the [GitLab API](https://docs.gitlab.com/ee/api/README.html)
 
 Copy then adapted from [gh-got](https://github.com/sindresorhus/gh-got)
 

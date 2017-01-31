@@ -34,7 +34,7 @@ test.serial('global endpoint option', async t => {
 });
 
 test.serial('endpoint option', async t => {
-	process.env.GITLAB_ENDPOINT = 'https://api.github.com/';
+	process.env.GITLAB_ENDPOINT = 'https://gitlab.com/api/v3/';
 	await t.throws(m('users/979254', {
 		endpoint: 'fail',
 		retries: 1
