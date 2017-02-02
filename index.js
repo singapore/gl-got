@@ -2,7 +2,7 @@
 const got = require('got');
 const isPlainObj = require('is-plain-obj');
 
-function ghGot(path, opts) {
+function glGot(path, opts) {
 	if (typeof path !== 'string') {
 		return Promise.reject(new TypeError(`Expected 'path' to be a string, got ${typeof path}`));
 	}
@@ -11,22 +11,16 @@ function ghGot(path, opts) {
 
 	opts = Object.assign({
 		json: true,
-		token: env.GITHUB_TOKEN,
-		endpoint: env.GITHUB_ENDPOINT ? env.GITHUB_ENDPOINT.replace(/[^/]$/, '$&/') : 'https://api.github.com/'
+		token: env.GITLAB_TOKEN,
+		endpoint: env.GITLAB_ENDPOINT ? env.GITLAB_ENDPOINT.replace(/[^/]$/, '$&/') : 'https://gitlab.com/api/v3/'
 	}, opts);
 
 	opts.headers = Object.assign({
-		'accept': 'application/vnd.github.v3+json',
-		'user-agent': 'https://github.com/sindresorhus/gh-got'
+		'user-agent': 'https://github.com/singapore/gl-got'
 	}, opts.headers);
 
 	if (opts.token) {
-		opts.headers.authorization = `token ${opts.token}`;
-	}
-
-	// https://developer.github.com/v3/#http-verbs
-	if (opts.method && opts.method.toLowerCase() === 'put' && !opts.body) {
-		opts.headers['content-length'] = 0;
+		opts.headers['PRIVATE-TOKEN'] = opts.token;
 	}
 
 	// TODO: remove this when Got eventually supports it
@@ -54,15 +48,15 @@ const helpers = [
 	'delete'
 ];
 
-ghGot.stream = (url, opts) => ghGot(url, Object.assign({}, opts, {
+glGot.stream = (url, opts) => glGot(url, Object.assign({}, opts, {
 	json: false,
 	stream: true
 }));
 
 for (const x of helpers) {
 	const method = x.toUpperCase();
-	ghGot[x] = (url, opts) => ghGot(url, Object.assign({}, opts, {method}));
-	ghGot.stream[x] = (url, opts) => ghGot.stream(url, Object.assign({}, opts, {method}));
+	glGot[x] = (url, opts) => glGot(url, Object.assign({}, opts, {method}));
+	glGot.stream[x] = (url, opts) => glGot.stream(url, Object.assign({}, opts, {method}));
 }
 
-module.exports = ghGot;
+module.exports = glGot;

@@ -1,13 +1,12 @@
 {
-  "name": "gh-got",
-  "version": "5.0.0",
-  "description": "Convenience wrapper for `got` to interact with the GitHub API",
+  "name": "gl-got",
+  "version": "0.0.0",
+  "description": "Convenience wrapper for `got` to interact with the GitLab API",
   "license": "MIT",
-  "repository": "sindresorhus/gh-got",
+  "repository": "singapore/gl-got",
   "author": {
-    "name": "Sindre Sorhus",
-    "email": "sindresorhus@gmail.com",
-    "url": "sindresorhus.com"
+    "name": "Rhys Arkins",
+    "email": "rhys@keylocation.sg"
   },
   "engines": {
     "node": ">=4"
@@ -20,8 +19,8 @@
   ],
   "keywords": [
     "got",
-    "gh",
-    "github",
+    "gl",
+    "gitlab",
     "api",
     "request",
     "http",

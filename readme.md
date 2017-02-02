@@ -1,12 +1,13 @@
-# gh-got [![Build Status](https://travis-ci.org/sindresorhus/gh-got.svg?branch=master)](https://travis-ci.org/sindresorhus/gh-got)
+# gl-got [![Build Status](https://travis-ci.org/singapore/gl-got.svg?branch=master)](https://travis-ci.org/singapore/gl-got)
 
-> Convenience wrapper for [`got`](https://github.com/sindresorhus/got) to interact with the [GitHub API](https://developer.github.com/v3/)
+> Convenience wrapper for [`got`](https://github.com/sindresorhus/got) to interact with the [GitLab API](https://docs.gitlab.com/ee/api/README.html)
 
+Copy then adapted from [gh-got](https://github.com/sindresorhus/gh-got)
 
 ## Install
 
 ```
-$ npm install --save gh-got
+$ npm install --save gl-got
 ```
 
 
@@ -18,37 +19,36 @@ Instead of:
 const got = require('got');
 const token = 'foo';
 
-got('https://api.github.com/users/sindresorhus', {
+got('https://gitlab.com/api/v3/users/979254', {
 	json: true,
 	headers: {
-		'accept': 'application/vnd.github.v3+json',
-		'authorization': `token ${token}`
+		'PRIVATE-TOKEN': `${token}`
 	}
 }).then(res => {
-	console.log(res.body.login);
-	//=> 'sindresorhus'
+	console.log(res.body.username);
+	//=> 'gl-got-tester'
 });
 ```
 
 You can do:
 
 ```js
-const ghGot = require('gh-got');
+const glGot = require('gl-got');
 
-ghGot('users/sindresorhus', {token: 'foo'}).then(res => {
-	console.log(res.body.login);
-	//=> 'sindresorhus'
+glGot('users/979254', {token: 'foo'}).then(res => {
+	console.log(res.body.username);
+	//=> 'gl-got-tester'
 });
 ```
 
 Or:
 
 ```js
-const ghGot = require('gh-got');
+const glGot = require('gl-got');
 
-ghGot('https://api.github.com/users/sindresorhus', {token: 'foo'}).then(res => {
-	console.log(res.body.login);
-	//=> 'sindresorhus'
+glGot('https://gitlab.com/api/v3/users/979254', {token: 'foo'}).then(res => {
+	console.log(res.body.username);
+	//=> 'gl-got-tester'
 });
 ```
 
@@ -61,18 +61,16 @@ Same as [`got`](https://github.com/sindresorhus/got) (including the stream API a
 
 Type: `string`
 
-GitHub [access token](https://github.com/settings/tokens/new).
+GitLab [access token](https://docs.gitlab.com/ee/api/README.html#personal-access-tokens).
 
-Can be set globally with the `GITHUB_TOKEN` environment variable.
+Can be set globally with the `GITLAB_TOKEN` environment variable.
 
 ### endpoint
 
 Type: `string`<br>
-Default: `https://api.github.com/`
+Default: `https://gitlab.com/api/v3/`
 
-To support [GitHub Enterprise](https://enterprise.github.com).
-
-Can be set globally with the `GITHUB_ENDPOINT` environment variable.
+Can be set globally with the `GITLAB_ENDPOINT` environment variable.
 
 ### body
 
@@ -83,4 +81,6 @@ Can be specified as a plain object and will be serialized as JSON with the appro
 
 ## License
 
-MIT © [Sindre Sorhus](https://sindresorhus.com)
+MIT
+© [Sindre Sorhus](https://sindresorhus.com)
+© [Rhys Arkins](http://rhys.arkins.net)

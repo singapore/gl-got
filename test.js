@@ -3,48 +3,48 @@ import nock from 'nock';
 import getStream from 'get-stream';
 import m from './';
 
-const token = process.env.GITHUB_TOKEN;
+const token = process.env.GITLAB_TOKEN;
 
 test('default', async t => {
-	t.is((await m('users/sindresorhus')).body.login, 'sindresorhus');
+	t.is((await m('users/979254')).body.username, 'gl-got-tester');
 });
 
 test('full path', async t => {
-	t.is((await m('https://api.github.com/users/sindresorhus')).body.login, 'sindresorhus');
+	t.is((await m('https://gitlab.com/api/v3/users/979254')).body.username, 'gl-got-tester');
 });
 
 test('accepts options', async t => {
-	t.is((await m('users/sindresorhus', {})).body.login, 'sindresorhus');
+	t.is((await m('users/979254', {})).body.username, 'gl-got-tester');
 });
 
 test.serial('global token option', async t => {
-	process.env.GITHUB_TOKEN = 'fail';
-	await t.throws(m('users/sindresorhus'), 'Response code 401 (Unauthorized)');
-	process.env.GITHUB_TOKEN = token;
+	process.env.GITLAB_TOKEN = 'fail';
+	await t.throws(m('users/979254'), 'Response code 401 (Unauthorized)');
+	process.env.GITLAB_TOKEN = token;
 });
 
 test('token option', t => {
-	t.throws(m('users/sindresorhus', {token: 'fail'}), 'Response code 401 (Unauthorized)');
+	t.throws(m('users/979254', {token: 'fail'}), 'Response code 401 (Unauthorized)');
 });
 
 test.serial('global endpoint option', async t => {
-	process.env.GITHUB_ENDPOINT = 'fail';
-	await t.throws(m('users/sindresorhus', {retries: 1}), /ENOTFOUND/);
-	delete process.env.GITHUB_ENDPOINT;
+	process.env.GITLAB_ENDPOINT = 'fail';
+	await t.throws(m('users/979254', {retries: 1}), /ENOTFOUND/);
+	delete process.env.GITLAB_ENDPOINT;
 });
 
 test.serial('endpoint option', async t => {
-	process.env.GITHUB_ENDPOINT = 'https://api.github.com/';
-	await t.throws(m('users/sindresorhus', {
+	process.env.GITLAB_ENDPOINT = 'https://gitlab.com/api/v3/';
+	await t.throws(m('users/979254', {
 		endpoint: 'fail',
 		retries: 1
 	}), /ENOTFOUND/);
-	delete process.env.GITHUB_ENDPOINT;
+	delete process.env.GITLAB_ENDPOINT;
 });
 
 test('stream interface', async t => {
-	t.is(JSON.parse(await getStream(m.stream('users/sindresorhus'))).login, 'sindresorhus');
-	t.is(JSON.parse(await getStream(m.stream.get('users/sindresorhus'))).login, 'sindresorhus');
+	t.is(JSON.parse(await getStream(m.stream('users/979254'))).username, 'gl-got-tester');
+	t.is(JSON.parse(await getStream(m.stream.get('users/979254'))).username, 'gl-got-tester');
 });
 
 test('json body', async t => {
