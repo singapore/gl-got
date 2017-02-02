@@ -2,7 +2,7 @@
 
 > Convenience wrapper for [`got`](https://github.com/sindresorhus/got) to interact with the [GitLab API](https://docs.gitlab.com/ee/api/README.html)
 
-Copy then adapted from [gh-got](https://github.com/sindresorhus/gh-got)
+Copied then adapted for GitLab from [gh-got](https://github.com/sindresorhus/gh-got)
 
 ## Install
 
