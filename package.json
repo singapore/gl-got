@@ -12,7 +12,7 @@
     "node": ">=4"
   },
   "scripts": {
-    "test": "xo && ava"
+    "test": "xo && nyc ava && nyc report --reporter=html"
   },
   "files": [
     "index.js"
@@ -39,6 +39,7 @@
     "ava": "*",
     "get-stream": "^2.0.0",
     "nock": "^8.0.0",
+    "nyc": "^10.1.2",
     "xo": "*"
   },
   "xo": {
