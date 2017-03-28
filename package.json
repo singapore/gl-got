@@ -38,7 +38,7 @@
   "devDependencies": {
     "ava": "0.18.2",
     "get-stream": "3.0.0",
-    "nock": "9.0.9",
+    "nock": "9.0.10",
     "nyc": "10.1.2",
     "xo": "0.18.1"
   },
