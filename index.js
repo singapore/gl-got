@@ -36,7 +36,14 @@ function glGot(path, opts) {
 		return got.stream(url, opts);
 	}
 
-	return got(url, opts);
+	return got(url, opts).catch(err => {
+		if (err.response && isPlainObj(err.response.body)) {
+			err.name = 'GitLabError';
+			err.message = `${err.response.body.message} (${err.statusCode})`;
+		}
+
+		throw err;
+	});
 }
 
 const helpers = [

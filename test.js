@@ -44,7 +44,6 @@ test.serial('full path', async t => {
 	t.is((await glGot('https://www.gitlab.com/api/v3/users/979254')).body.username, 'gl-got-tester');
 
 	scope.done();
-});
 
 test.serial('replace user-agent header', async t => {
 	const scope = nock('https://gitlab.com', {reqheaders: {'user-agent': 'my-agent'}})
@@ -172,4 +171,10 @@ test.serial('json body', async t => {
 	t.deepEqual((await glGot('users', {endpoint: 'https://gitlab.com/api/v3/', body})).body, reply);
 
 	scope.done();
+});
+
+test('custom error', async t => {
+	const err = await t.throws(m('users/sindresorhus', {token: 'fail'}));
+	t.is(err.name, 'GithubError');
+	t.is(err.message, 'Bad credentials (401)');
 });

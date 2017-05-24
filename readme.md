@@ -55,7 +55,9 @@ glGot('https://gitlab.com/api/v3/users/979254', {token: 'foo'}).then(res => {
 
 ## API
 
-Same as [`got`](https://github.com/sindresorhus/got) (including the stream API and aliases), but with some additional options:
+Same as [`got`](https://github.com/sindresorhus/got) (including the stream API and aliases), but with some additional options below.
+
+Errors are improved by using the custom GitHub error messages. Doesn't apply to the stream API.
 
 ### token
 
