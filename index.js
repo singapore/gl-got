@@ -4,7 +4,7 @@ const isPlainObj = require('is-plain-obj');
 
 function glGot(path, opts) {
 	if (typeof path !== 'string') {
-		return Promise.reject(new TypeError(`Expected 'path' to be a string, got ${typeof path}`));
+		return Promise.reject(new TypeError(`Expected \`path\` to be a string, got ${typeof path}`));
 	}
 
 	const env = process.env;
@@ -21,13 +21,6 @@ function glGot(path, opts) {
 
 	if (opts.token) {
 		opts.headers['PRIVATE-TOKEN'] = opts.token;
-	}
-
-	// TODO: remove this when Got eventually supports it
-	// https://github.com/sindresorhus/got/issues/174
-	if (isPlainObj(opts.body)) {
-		opts.headers['content-type'] = 'application/json';
-		opts.body = JSON.stringify(opts.body);
 	}
 
 	const url = /^https?/.test(path) ? path : opts.endpoint + path;

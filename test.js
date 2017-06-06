@@ -2,7 +2,7 @@ import stream from 'stream';
 import test from 'ava';
 import nock from 'nock';
 import getStream from 'get-stream';
-import glGot from './';
+import glGot from '.';
 
 test.before('disable network requests', () => {
 	nock.disableNetConnect();
@@ -13,7 +13,7 @@ test.afterEach.always('nock mock cleanup', () => {
 });
 
 test.serial('invalid path', async t => {
-	await t.throws(glGot({}), 'Expected \'path\' to be a string, got object');
+	await t.throws(glGot({}), 'Expected `path` to be a string, got object');
 });
 
 test.serial('default', async t => {
@@ -158,18 +158,6 @@ test.serial('stream interface', async t => {
 	t.is(JSON.parse(await getStream(glGot('users/979254', {json: false, stream: true}))).username, 'gl-got-tester');
 	t.is(JSON.parse(await getStream(glGot.stream('users/979254'))).username, 'gl-got-tester');
 	t.is(JSON.parse(await getStream(glGot.stream.get('users/979254'))).username, 'gl-got-tester');
-
-	scope.done();
-});
-
-test.serial('json body', async t => {
-	const body = {test: [1, 3, 3, 7]};
-	const reply = {ok: true};
-	const scope = nock('https://gitlab.com')
-		.post('/api/v3/users', body)
-		.reply(200, reply);
-
-	t.deepEqual((await glGot('users', {endpoint: 'https://gitlab.com/api/v3/', body})).body, reply);
 
 	scope.done();
 });
