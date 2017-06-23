@@ -44,6 +44,7 @@ test.serial('full path', async t => {
 	t.is((await glGot('https://www.gitlab.com/api/v3/users/979254')).body.username, 'gl-got-tester');
 
 	scope.done();
+});
 
 test.serial('replace user-agent header', async t => {
 	const scope = nock('https://gitlab.com', {reqheaders: {'user-agent': 'my-agent'}})
