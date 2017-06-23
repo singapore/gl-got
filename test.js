@@ -139,7 +139,7 @@ test.serial('bad token', async t => {
 	.get('/api/v3/users/979254')
 	.reply(401, {message: '401 Unauthorized'});
 
-	await t.throws(glGot('users/979254', {token: 'fail'}), 'Response code 401 (Unauthorized)');
+	await t.throws(glGot('users/979254', {token: 'fail'}), '401 Unauthorized (401)');
 
 	scope.done();
 });
