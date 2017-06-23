@@ -172,9 +172,3 @@ test.serial('json body', async t => {
 
 	scope.done();
 });
-
-test('custom error', async t => {
-	const err = await t.throws(m('users/sindresorhus', {token: 'fail'}));
-	t.is(err.name, 'GithubError');
-	t.is(err.message, 'Bad credentials (401)');
-});
