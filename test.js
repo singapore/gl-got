@@ -144,6 +144,17 @@ test.serial('bad token', async t => {
 	scope.done();
 });
 
+test.serial('bad token with string error response', async t => {
+	const scope = nock('https://gitlab.com', {reqheaders: {'PRIVATE-TOKEN': 'fail'}})
+	.get('/api/v3/users/979254')
+	// This is not an expected response, but it tests the error handling code in `gl-got`.
+	.reply(401, ['401 Unauthorized']);
+
+	await t.throws(glGot('users/979254', {token: 'fail'}), 'Response code 401 (Unauthorized)');
+
+	scope.done();
+});
+
 test.serial('stream interface', async t => {
 	const scope = nock('https://gitlab.com')
 		.get('/api/v3/users/979254')
