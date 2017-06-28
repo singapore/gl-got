@@ -36,7 +36,7 @@
     "is-plain-obj": "^1.1.0"
   },
   "devDependencies": {
-    "ava": "0.19.1",
+    "ava": "0.20.0",
     "get-stream": "3.0.0",
     "nock": "9.0.13",
     "nyc": "11.0.1",
