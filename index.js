@@ -17,7 +17,7 @@ function glGot(path, opts) {
       token: env.GITLAB_TOKEN,
       endpoint: env.GITLAB_ENDPOINT
         ? env.GITLAB_ENDPOINT.replace(/[^/]$/, '$&/')
-        : 'https://gitlab.com/api/v3/',
+        : 'https://gitlab.com/api/v4/',
     },
     opts
   );
