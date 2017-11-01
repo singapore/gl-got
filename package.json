@@ -40,7 +40,12 @@
     "get-stream": "3.0.0",
     "nock": "9.0.13",
     "nyc": "11.0.1",
+    "prettier": "1.7.4",
     "xo": "0.18.2"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "es5"
   },
   "renovate": {
     "automerge": "minor"
