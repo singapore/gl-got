@@ -42,9 +42,6 @@
     "nyc": "11.0.1",
     "xo": "0.18.2"
   },
-  "renovate": {
-    "automerge": "minor"
-  },
   "xo": {
     "esnext": true
   }
