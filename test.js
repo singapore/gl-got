@@ -18,7 +18,7 @@ test.serial('invalid path', async t => {
 
 test.serial('default', async t => {
 	const scope = nock('https://gitlab.com', {reqheaders: {'user-agent': 'https://github.com/singapore/gl-got'}})
-		.get('/api/v3/users/979254')
+		.get('/api/v4/users/979254')
 		.reply(200, {username: 'gl-got-tester'});
 
 	t.is((await glGot('users/979254')).body.username, 'gl-got-tester');
@@ -28,7 +28,7 @@ test.serial('default', async t => {
 
 test.serial('default get', async t => {
 	const scope = nock('https://gitlab.com')
-		.get('/api/v3/users/979254')
+		.get('/api/v4/users/979254')
 		.reply(200, {username: 'gl-got-tester'});
 
 	t.is((await glGot.get('users/979254')).body.username, 'gl-got-tester');
@@ -38,17 +38,17 @@ test.serial('default get', async t => {
 
 test.serial('full path', async t => {
 	const scope = nock('https://www.gitlab.com')
-		.get('/api/v3/users/979254')
+		.get('/api/v4/users/979254')
 		.reply(200, {username: 'gl-got-tester'});
 
-	t.is((await glGot('https://www.gitlab.com/api/v3/users/979254')).body.username, 'gl-got-tester');
+	t.is((await glGot('https://www.gitlab.com/api/v4/users/979254')).body.username, 'gl-got-tester');
 
 	scope.done();
 });
 
 test.serial('replace user-agent header', async t => {
 	const scope = nock('https://gitlab.com', {reqheaders: {'user-agent': 'my-agent'}})
-		.get('/api/v3/users/979254')
+		.get('/api/v4/users/979254')
 		.reply(200, {username: 'gl-got-tester'});
 
 	t.is((await glGot('users/979254', {headers: {'user-agent': 'my-agent'}})).body.username, 'gl-got-tester');
@@ -58,7 +58,7 @@ test.serial('replace user-agent header', async t => {
 
 test.serial('accepts options', async t => {
 	const scope = nock('https://gitlab.com')
-		.get('/api/v3/users/979254')
+		.get('/api/v4/users/979254')
 		.reply(200, {username: 'gl-got-tester'});
 
 	t.is((await glGot('users/979254', {})).body.username, 'gl-got-tester');
@@ -68,20 +68,20 @@ test.serial('accepts options', async t => {
 
 test.serial('endpoint option', async t => {
 	const scope = nock('https://gitlab.example.com')
-		.get('/api/v3/users/979254')
+		.get('/api/v4/users/979254')
 		.reply(200, {username: 'gl-got-tester'});
 
-	t.is((await glGot('users/979254', {endpoint: 'https://gitlab.example.com/api/v3/'})).body.username, 'gl-got-tester');
+	t.is((await glGot('users/979254', {endpoint: 'https://gitlab.example.com/api/v4/'})).body.username, 'gl-got-tester');
 
 	scope.done();
 });
 
 test.serial('endpoint environment variable', async t => {
 	const scope = nock('https://gitlab.example.com')
-		.get('/api/v3/users/979254')
+		.get('/api/v4/users/979254')
 		.reply(200, {username: 'gl-got-tester'});
 
-	process.env.GITLAB_ENDPOINT = 'https://gitlab.example.com/api/v3/';
+	process.env.GITLAB_ENDPOINT = 'https://gitlab.example.com/api/v4/';
 	t.is((await glGot('users/979254')).body.username, 'gl-got-tester');
 	delete process.env.GITLAB_ENDPOINT;
 
@@ -90,11 +90,11 @@ test.serial('endpoint environment variable', async t => {
 
 test.serial('endpoint option over endpoint environment variable', async t => {
 	const scope = nock('https://gitlab.example.org')
-		.get('/api/v3/users/979254')
+		.get('/api/v4/users/979254')
 		.reply(200, {username: 'gl-got-tester'});
 
-	process.env.GITLAB_ENDPOINT = 'https://gitlab.example.com/api/v3/';
-	t.is((await glGot('users/979254', {endpoint: 'https://gitlab.example.org/api/v3/'})).body.username, 'gl-got-tester');
+	process.env.GITLAB_ENDPOINT = 'https://gitlab.example.com/api/v4/';
+	t.is((await glGot('users/979254', {endpoint: 'https://gitlab.example.org/api/v4/'})).body.username, 'gl-got-tester');
 	delete process.env.GITLAB_ENDPOINT;
 
 	scope.done();
@@ -102,7 +102,7 @@ test.serial('endpoint option over endpoint environment variable', async t => {
 
 test.serial('token option', async t => {
 	const scope = nock('https://gitlab.com', {reqheaders: {'PRIVATE-TOKEN': 'MYTOKEN'}})
-		.get('/api/v3/users/979254')
+		.get('/api/v4/users/979254')
 		.reply(200, {username: 'gl-got-tester'});
 
 	t.is((await glGot('users/979254', {token: 'MYTOKEN'})).body.username, 'gl-got-tester');
@@ -112,7 +112,7 @@ test.serial('token option', async t => {
 
 test.serial('token environment variable', async t => {
 	const scope = nock('https://gitlab.com', {reqheaders: {'PRIVATE-TOKEN': 'MYTOKEN'}})
-		.get('/api/v3/users/979254')
+		.get('/api/v4/users/979254')
 		.reply(200, {username: 'gl-got-tester'});
 
 	process.env.GITLAB_TOKEN = 'MYTOKEN';
@@ -124,7 +124,7 @@ test.serial('token environment variable', async t => {
 
 test.serial('token option over token environment variable', async t => {
 	const scope = nock('https://gitlab.com', {reqheaders: {'PRIVATE-TOKEN': 'MYOTHERTOKEN'}})
-		.get('/api/v3/users/979254')
+		.get('/api/v4/users/979254')
 		.reply(200, {username: 'gl-got-tester'});
 
 	process.env.GITLAB_TOKEN = 'MYTOKEN';
@@ -136,7 +136,7 @@ test.serial('token option over token environment variable', async t => {
 
 test.serial('bad token', async t => {
 	const scope = nock('https://gitlab.com', {reqheaders: {'PRIVATE-TOKEN': 'fail'}})
-	.get('/api/v3/users/979254')
+	.get('/api/v4/users/979254')
 	.reply(401, {message: '401 Unauthorized'});
 
 	await t.throws(glGot('users/979254', {token: 'fail'}), '401 Unauthorized (401)');
@@ -146,7 +146,7 @@ test.serial('bad token', async t => {
 
 test.serial('bad token with string error response', async t => {
 	const scope = nock('https://gitlab.com', {reqheaders: {'PRIVATE-TOKEN': 'fail'}})
-	.get('/api/v3/users/979254')
+	.get('/api/v4/users/979254')
 	// This is not an expected response, but it tests the error handling code in `gl-got`.
 	.reply(401, ['401 Unauthorized']);
 
@@ -157,7 +157,7 @@ test.serial('bad token with string error response', async t => {
 
 test.serial('stream interface', async t => {
 	const scope = nock('https://gitlab.com')
-		.get('/api/v3/users/979254')
+		.get('/api/v4/users/979254')
 		.reply(200, () => {
 			const readableStream = new stream.Readable();
 			readableStream.push('{"username": "gl-got-tester"}');
