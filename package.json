@@ -12,7 +12,7 @@
     "node": ">=4"
   },
   "scripts": {
-    "test": "xo && nyc ava && nyc report --reporter=html"
+    "test": "xo && nyc --all --cache --include=index.js --exclude=test.js --reporter=lcov --reporter=text ava"
   },
   "files": [
     "index.js"
