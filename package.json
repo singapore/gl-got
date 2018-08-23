@@ -6,8 +6,12 @@
   "repository": "singapore/gl-got",
   "author": {
     "name": "Rhys Arkins",
-    "email": "rhys@keylocation.sg"
+    "email": "rhys@arkins.net"
   },
+	"contributors": [
+    "Itai Steinherz <itaisteinherz@gmail.com>",
+    "Hutson Betts <hutson@hyper-expanse.net>"
+  ],
   "engines": {
     "node": ">=8"
   },
