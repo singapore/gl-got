@@ -67,10 +67,10 @@ GitLab [access token](https://docs.gitlab.com/ee/api/README.html#personal-access
 
 Can be set globally with the `GITLAB_TOKEN` environment variable.
 
-### endpoint
+### baseUrl
 
 Type: `string`<br>
-Default: `https://gitlab.com/api/v3/`
+Default: `https://gitlab.com/api/v3`
 
 Can be set globally with the `GITLAB_ENDPOINT` environment variable.
 
