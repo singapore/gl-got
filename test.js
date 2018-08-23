@@ -154,7 +154,8 @@ test.serial('bad token with string error response', async t => {
 		.reply(401, ['Bad credentials']);
 
 	const err = await t.throwsAsync(glGot('users/979254', {token: 'fail'}));
-	t.is(err.message, 'Response code 401 (Unauthorized)');
+	t.is(err.name, 'GitLabError');
+	t.is(err.message, 'Bad credentials (401)');
 
 	scope.done();
 });

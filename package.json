@@ -32,12 +32,11 @@
     "utility"
   ],
   "dependencies": {
-    "got": "^9.0.0",
-    "is-plain-obj": "^1.1.0"
+    "got": "^9.1.0"
   },
   "devDependencies": {
-    "ava": "^1.0.0-beta.6",
-    "get-stream": "3.0.0",
+    "ava": "^1.0.0-beta.7",
+    "get-stream": "^4.0.0",
     "nock": "9.0.13",
     "nyc": "11.0.1",
     "xo": "^0.22.0"

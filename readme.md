@@ -70,7 +70,7 @@ Can be set globally with the `GITLAB_TOKEN` environment variable.
 ### baseUrl
 
 Type: `string`<br>
-Default: `https://gitlab.com/api/v3/`
+Default: `https://gitlab.com/api/v3`
 
 Can be set globally with the `GITLAB_ENDPOINT` environment variable.
 
