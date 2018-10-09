@@ -36,7 +36,7 @@
     "utility"
   ],
   "dependencies": {
-    "got": "^9.1.0"
+    "got": "^9.2.0"
   },
   "devDependencies": {
     "ava": "^1.0.0-beta.7",
