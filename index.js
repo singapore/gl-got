@@ -13,7 +13,7 @@ const create = () => got.create({
 	methods: got.defaults.methods,
 	handler: (options, next) => {
 		if (options.token) {
-			options.headers.authorization = `token ${options.token}`;
+			options.headers['PRIVATE-TOKEN'] = `${options.token}`;
 		}
 
 		if (options.stream) {

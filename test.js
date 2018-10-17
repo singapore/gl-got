@@ -102,7 +102,7 @@ test.serial('baseUrl option over endpoint environment variable', async t => {
 });
 
 test.serial('token option', async t => {
-	const scope = nock('https://gitlab.com', {reqheaders: {authorization: 'token MYTOKEN'}})
+	const scope = nock('https://gitlab.com', {reqheaders: {'PRIVATE-TOKEN': 'MYTOKEN'}})
 		.get('/api/v4/users/979254')
 		.reply(200, {username: 'gl-got-tester'});
 
@@ -112,7 +112,7 @@ test.serial('token option', async t => {
 });
 
 test.serial('token environment variable', async t => {
-	const scope = nock('https://gitlab.com', {reqheaders: {authorization: 'token MYTOKEN'}})
+	const scope = nock('https://gitlab.com', {reqheaders: {'PRIVATE-TOKEN': 'MYTOKEN'}})
 		.get('/api/v4/users/979254')
 		.reply(200, {username: 'gl-got-tester'});
 
@@ -124,7 +124,7 @@ test.serial('token environment variable', async t => {
 });
 
 test.serial('token option over token environment variable', async t => {
-	const scope = nock('https://gitlab.com', {reqheaders: {authorization: 'token MYOTHERTOKEN'}})
+	const scope = nock('https://gitlab.com', {reqheaders: {'PRIVATE-TOKEN': 'MYOTHERTOKEN'}})
 		.get('/api/v4/users/979254')
 		.reply(200, {username: 'gl-got-tester'});
 
@@ -136,7 +136,7 @@ test.serial('token option over token environment variable', async t => {
 });
 
 test.serial('bad token', async t => {
-	const scope = nock('https://gitlab.com', {reqheaders: {authorization: 'token fail'}})
+	const scope = nock('https://gitlab.com', {reqheaders: {'PRIVATE-TOKEN': 'fail'}})
 		.get('/api/v4/users/979254')
 		.reply(401, {message: 'Bad credentials'});
 
@@ -148,7 +148,7 @@ test.serial('bad token', async t => {
 });
 
 test.serial('bad token with string error response', async t => {
-	const scope = nock('https://gitlab.com', {reqheaders: {authorization: 'token fail'}})
+	const scope = nock('https://gitlab.com', {reqheaders: {'PRIVATE-TOKEN': 'fail'}})
 		.get('/api/v4/users/979254')
 		// This is not an expected response, but it tests the error handling code in `gl-got`.
 		.reply(401, ['Bad credentials']);
