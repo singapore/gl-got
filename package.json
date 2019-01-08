@@ -16,7 +16,7 @@
     "node": ">=8"
   },
   "scripts": {
-    "test": "xo && nyc --all --cache --include=index.js --exclude=test.js --reporter=lcov --reporter=text ava"
+    "test": "xo && GL_GOT_TEST=true nyc --all --cache --include=index.js --exclude=test.js --reporter=lcov --reporter=text ava"
   },
   "files": [
     "index.js"
