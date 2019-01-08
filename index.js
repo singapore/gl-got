@@ -33,6 +33,6 @@ const create = () => got.create({
 
 module.exports = create();
 
-if (process.env.NODE_ENV === 'test') {
+if (process.env.GL_GOT_TEST) {
 	module.exports.recreate = create;
 }

@@ -1,6 +1,6 @@
 {
   "name": "gl-got",
-  "version": "9.0.2",
+  "version": "9.0.3",
   "description": "Convenience wrapper for `got` to interact with the GitLab API",
   "license": "MIT",
   "repository": "singapore/gl-got",
@@ -16,7 +16,7 @@
     "node": ">=8"
   },
   "scripts": {
-    "test": "xo && nyc --all --cache --include=index.js --exclude=test.js --reporter=lcov --reporter=text ava"
+    "test": "xo && GL_GOT_TEST=true nyc --all --cache --include=index.js --exclude=test.js --reporter=lcov --reporter=text ava"
   },
   "files": [
     "index.js"
