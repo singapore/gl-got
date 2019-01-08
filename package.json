@@ -1,6 +1,6 @@
 {
   "name": "gl-got",
-  "version": "9.0.2",
+  "version": "9.0.3",
   "description": "Convenience wrapper for `got` to interact with the GitLab API",
   "license": "MIT",
   "repository": "singapore/gl-got",
